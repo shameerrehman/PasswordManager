@@ -1,9 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge">
-    <meta name="viewport" content="width-device-width, initial-scale=1.0">
-    <title>Password Manager</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="main.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE-edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Password Manager</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="main.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="brand"><a href=""><i class="fa fa-lock"></i> Password Manager</a></div>
+                <li><a href="">Home</a></li>
+                <li><a href="javascript:;" onclick="displayModal('login-modal');">Login</a></li>
+                <li><a href="javascript:;" onclick="displayModal('signup-modal');">Sign Up</a></li>
+            </nav>
+        </header>
+
+        <!--    modals    -->
+        <div class="modals-wrapper">
+            <span id="close-modal"><i title="close" class="fa fa-times"></i></span>
+            <!--Login modal-->
+            <div class="modal" id="login-modal">
+                <form action="">
+                    <h2>Login</h2>
+                    <input type="text" name="username" placeholder="username">
+                    <input type="password" name="password" placeholder="password">
+                    <input type="submit" value="login">
+                </form>
+            </div>
+
+            <!--Signup modal-->
+            <div class="modal" id="signup-modal">
+                <form action="">
+                    <h2>Sign Up</h2>
+                    <input type="text" name="username" placeholder="username">
+                    <input type="email" name="email" placeholder="emial@address.com">
+                    <input type="password" name="password" placeholder="password">
+                    <input type="password2" name="password2" placeholder="confirm password">
+                    <input type="submit" value="register">
+                </form>
+            </div>
+        </div>
+
+
+
+        <footer>
+            <a href="">Link to project code</a>
+        </footer>
+    </body>
 </html>

@@ -1,0 +1,11 @@
+.modal-wrapper{
+    display: none;
+}
+
+#login-modal{
+    display: none;
+}
+
+#signup-modal{
+    display: none;
+}
