@@ -16,6 +16,9 @@
                 <li><a href="">Home</a></li>
                 <li><a href="javascript:;" onclick="displayModal('login-modal');">Login</a></li>
                 <li><a href="javascript:;" onclick="displayModal('signup-modal');">Sign Up</a></li>
+                <li><a href="javascript:;" onclick="displayModal('password-modal');">View</a></li>
+                <li><a href="javascript:;" onclick="displayModal('add-password-modal');">Add New</a></li>
+
             </nav>
         </header>
 
@@ -42,6 +45,26 @@
                     <input type="password2" name="password2" placeholder="confirm password">
                     <input type="submit" value="register">
                 </form>
+            </div>
+
+            <!--password display modal-->
+            <div class="modal" id="password-modal">
+                <h2>URL/Name</h2>
+                <img width="80" height="80" src="https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png">
+                <input type="email" name="email" placeholder="emial@address.com"> <i class="fas fa-copy copy" title="copy to clipboard"></i>
+                <input type="password" name="password" value="password"><i class="fas fa-copy copy" title="copy to clipboard"></i>               
+
+            </div>
+
+            <!--add new password modal-->
+            <div class="modal" id="add-password-modal">
+                <form action="">
+                    <h2>Add New Password</h2>
+                    <input type="text" name="url" placeholder="google.com">
+                    <input type="email" name="email" placeholder="emial@address.com">
+                    <input type="password" name="password" value="password">   
+                    <input type="submit" value="save">
+                </form>    
             </div>
         </div>
 

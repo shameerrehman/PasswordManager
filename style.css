@@ -5,7 +5,15 @@
 #login-modal{
     display: none;
 }
-
+#close-modal{
+    display: none;
+}
 #signup-modal{
+    display: none;
+}
+#password-modal{
+    display: none;
+}
+#add-password-modal{
     display: none;
 }
