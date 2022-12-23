@@ -12,13 +12,15 @@
     <body>
         <header>
             <nav>
-                <div class="brand"><a href=""><i class="fa fa-lock"></i> Password Manager</a></div>
-                <li><a href="">Home</a></li>
-                <li><a href="javascript:;" onclick="displayModal('login-modal');">Login</a></li>
-                <li><a href="javascript:;" onclick="displayModal('signup-modal');">Sign Up</a></li>
-                <li><a href="javascript:;" onclick="displayModal('password-modal');">View</a></li>
-                <li><a href="javascript:;" onclick="displayModal('add-password-modal');">Add New</a></li>
-
+                <div class="brand"><a href=""><i class="fa fa-lock fa-fw"></i> SafePass</a></div>
+                <ul>
+                    <li class="nav-list"><a href="">Home</a></li>
+                    <li class="nav-list"><a href="javascript:;" onclick="displayModal('login-modal');">Login</a></li>
+                    <li class="nav-list"><a href="javascript:;" onclick="displayModal('signup-modal');">Sign Up</a></li>
+                    <li class="nav-list"><a href="javascript:;" onclick="displayModal('password-modal');">View</a></li>
+                    <li class="nav-list"><a href="javascript:;" onclick="displayModal('add-password-modal');">Add New</a></li>
+                </ul>
+                
             </nav>
         </header>
 
@@ -31,7 +33,7 @@
                     <h2>Login</h2>
                     <input type="text" name="username" placeholder="username">
                     <input type="password" name="password" placeholder="password">
-                    <input type="submit" value="login">
+                    <input type="submit" value="Login">
                 </form>
             </div>
 
@@ -43,7 +45,7 @@
                     <input type="email" name="email" placeholder="emial@address.com">
                     <input type="password" name="password" placeholder="password">
                     <input type="password2" name="password2" placeholder="confirm password">
-                    <input type="submit" value="register">
+                    <input type="submit" value="Register">
                 </form>
             </div>
 
@@ -51,8 +53,8 @@
             <div class="modal" id="password-modal">
                 <h2>URL/Name</h2>
                 <img width="80" height="80" src="https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png">
-                <input type="email" name="email" placeholder="emial@address.com"> <i class="fas fa-copy copy" title="copy to clipboard"></i>
-                <input type="password" name="password" value="password"><i class="fas fa-copy copy" title="copy to clipboard"></i>               
+                <input type="email" name="email" placeholder="emial@address.com"> <i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i>
+                <input type="password" name="password" value="password"><i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i>               
 
             </div>
 
@@ -63,12 +65,23 @@
                     <input type="text" name="url" placeholder="google.com">
                     <input type="email" name="email" placeholder="emial@address.com">
                     <input type="password" name="password" value="password">   
-                    <input type="submit" value="save">
+                    <input type="submit" value="Save">
                 </form>    
             </div>
         </div>
 
+        <div class="container">
+            <div class="cards">
+                <img width="50" height="50" src="https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png">
+                <div class="name">Google Account</div>
+                <div class="actions"> Actions
+                    <a href="" class="action-item"><i class="fa fa-trash fa-fw"> </i> Delete</a>
+                    <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>
+                    <a href="" class="action-item"><i class="fa fa-refresh fa-fw"> </i> Update</a>
 
+                </div>
+            </div>
+        </div>
 
         <footer>
             <a href="">Link to project code</a>
