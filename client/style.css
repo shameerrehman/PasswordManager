@@ -69,7 +69,7 @@ header nav ul li{
     margin-left: 20px;
 }
 
-@media screen and (max-width: 640px){
+@media screen and (max-width: 680px){
     header nav{
         flex-direction: column;
         justify-content: center;
@@ -153,8 +153,10 @@ header nav ul li{
     padding: 0 20px;
     display: grid;
     margin-bottom: 80px;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-.cards{
+.card{
     background-color: var(--modal-background);
     display: flex;
     justify-content: center;
@@ -166,16 +168,38 @@ header nav ul li{
 .actions{
     margin: 5px;
 }
+.actions p{
+    background-color: #7a7a7a;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin: 5px
+
+}
 .actions a{
     display: none;
     flex-direction: row;
-    padding: 5px 10px;
+    padding: 0px 10px;
     align-items: center;
+}
+.actions:hover p{
+    background-color: #000000;
 }
 .actions:hover .action-item{
     display: flex;
 }
 
+@media screen and (max-width: 680px) {
+    .container{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 420) {
+    .container{
+        grid-template-columns: 1fr;
+    }
+}
 
 /*footer*/
 footer{
