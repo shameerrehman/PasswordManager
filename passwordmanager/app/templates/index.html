@@ -21,10 +21,10 @@
                     <li class="nav-list"><a href="javascript:;" onclick="displayModal('login-modal');">Login</a></li>
                     <li class="nav-list"><a href="javascript:;" onclick="displayModal('signup-modal');">Sign Up</a></li>
                     {% else %}
-                    <li class="nav-list"><a href="javascript:;" onclick="document.getElementById('logout').click();">Logout</a></li>
-                    <form hidden="true" action='.' method="POST">
+                    <li class="nav-list"><a href="javascript:;" onclick="document.getElementById('logout-btn').click();">Logout</a></li>
+                    <form hidden="true" role="form" action='.' method="POST">
                         {% csrf_token %}
-                        <input type="submit" id="logout" name"Logout">
+                        <input type="submit" id="logout-btn" name="logout">
                     </form>
 
                     <li class="nav-list"><a href="javascript:;" onclick="displayModal('password-modal');">View</a></li>
@@ -48,10 +48,23 @@
                         &nbsp;{{message}}
                     </p>
                 {% endfor %}
-            </div?
+            </div>
         {% endif %}
+        <!--Code Confirmation-->
+        {% if code %}
+        <div style='text-align:center;'>
+            <form actiom='.' method="POST" role='form'>
+                {% csrf_token %}
+                <h2>Please confirm your login</h2>
+                <p>Check your email for the 6-digit code to enter below.</p>
+                <input type='text' name='code' placeholder='XXXXXX'>
+                <input type='text' hidden='true' name='user' value='{{user.username}}'>
+                <input type="submit" value="Confirm Your Login" name="confirm">
+            </form>
+        </div>
+        {% endif%}
 
-        <!--    modals    -->
+        <!-- modals-->
         <div class="modals-wrapper">
             <span id="close-modal"><i title="close" class="fa fa-times"></i></span>
             <!--Login modal-->
@@ -89,12 +102,13 @@
 
             <!--add new password modal-->
             <div class="modal" id="add-password-modal">
-                <form action="">
+                <form action="." role="form" method="POST">
+                    {% csrf_token %}
                     <h2>Add New Password</h2>
-                    <input type="text" name="url" placeholder="google.com">
+                    <input type="text" name="url" placeholder="https://google.com">
                     <input type="email" name="email" placeholder="emial@address.com">
                     <input type="password" name="password" value="password">   
-                    <input type="submit" value="Save">
+                    <input type="submit" value="Save" name='add-new-pass'>
                 </form>    
             </div>
         </div>

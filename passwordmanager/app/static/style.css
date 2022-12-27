@@ -110,7 +110,12 @@ header nav ul li{
     border-radius: 5px;
 }
 
-
+#confirm-modal{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
 #login-modal{
     display: none;
     justify-content: center;
