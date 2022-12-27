@@ -115,5 +115,15 @@ def index(req):
             notif = f"{site_title} successfully added!"
             messages.success(req, notif)
             return HttpResponseRedirect(req.path)
+    context={}
+    if req.user.is_authenticated:
+        all_passwords = Password.objects.all().filter(user = req.user)
+        for password in all_passwords:
+            password.email = fernet.decrypt(password.email.encode()).decode()
+            password.password = fernet.decrypt(password.password.encode()).decode()
+            
+            context = {
+                "all_passwords": all_passwords
 
-    return render(req, "index.html", {})
+            }
+    return render(req, "index.html", context)

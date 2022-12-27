@@ -114,126 +114,20 @@
         </div>
 
         <div class="container">
-            <div class="card">
-                <img width="50" height="50" src="https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png">
-                <div class="name">Google Account</div>
-                <div class="actions"><p><i class="fa-solid fa-caret-down fa-fw"></i> Actions</p> 
-                    <a href="" class="action-item"><i class="fa fa-trash fa-fw"> </i> Delete</a>
-                    <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>
-                    <a href="" class="action-item"><i class="fa fa-refresh fa-fw"> </i> Update</a>
+            {% for password in all_passwords %}
+                <div class="card">
+                    <img width="50" height="50" src="{{password.favicon}}">
+                    <div class="name">{{password.title}}</div>
+                    <input type="email" name="email" value="{{password.email}}"> <i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i>
+                <input type="password" name="password" value="{{password.password}}"><i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i>
+                    <div class="actions"><p><i class="fa-solid fa-caret-down fa-fw"></i> Actions</p> 
+                        <a href="" class="action-item"><i class="fa fa-trash fa-fw"> </i> Delete</a>
+                        <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>
+                        <a href="" class="action-item"><i class="fa fa-refresh fa-fw"> </i> Update</a>
+                    </div>
                 </div>
-            </div>
-
-            <div class="card">
-                <img width="50" height="50" src="https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png">
-                <div class="name">Google Account</div>
-                <div class="actions"><p><i class="fa-solid fa-caret-down fa-fw"></i> Actions</p> 
-                    <a href="" class="action-item"><i class="fa fa-trash fa-fw"> </i> Delete</a>
-                    <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>
-                    <a href="" class="action-item"><i class="fa fa-refresh fa-fw"> </i> Update</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img width="50" height="50" src="https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png">
-                <div class="name">Google Account</div>
-                <div class="actions"><p><i class="fa-solid fa-caret-down fa-fw"></i> Actions</p> 
-                    <a href="" class="action-item"><i class="fa fa-trash fa-fw"> </i> Delete</a>
-                    <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>
-                    <a href="" class="action-item"><i class="fa fa-refresh fa-fw"> </i> Update</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img width="50" height="50" src="https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png">
-                <div class="name">Google Account</div>
-                <div class="actions"><p><i class="fa-solid fa-caret-down fa-fw"></i> Actions</p> 
-                    <a href="" class="action-item"><i class="fa fa-trash fa-fw"> </i> Delete</a>
-                    <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>
-                    <a href="" class="action-item"><i class="fa fa-refresh fa-fw"> </i> Update</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img width="50" height="50" src="https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png">
-                <div class="name">Google Account</div>
-                <div class="actions"><p><i class="fa-solid fa-caret-down fa-fw"></i> Actions</p> 
-                    <a href="" class="action-item"><i class="fa fa-trash fa-fw"> </i> Delete</a>
-                    <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>
-                    <a href="" class="action-item"><i class="fa fa-refresh fa-fw"> </i> Update</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img width="50" height="50" src="https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png">
-                <div class="name">Google Account</div>
-                <div class="actions"><p><i class="fa-solid fa-caret-down fa-fw"></i> Actions</p> 
-                    <a href="" class="action-item"><i class="fa fa-trash fa-fw"> </i> Delete</a>
-                    <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>
-                    <a href="" class="action-item"><i class="fa fa-refresh fa-fw"> </i> Update</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img width="50" height="50" src="https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png">
-                <div class="name">Google Account</div>
-                <div class="actions"><p><i class="fa-solid fa-caret-down fa-fw"></i> Actions</p> 
-                    <a href="" class="action-item"><i class="fa fa-trash fa-fw"> </i> Delete</a>
-                    <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>
-                    <a href="" class="action-item"><i class="fa fa-refresh fa-fw"> </i> Update</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img width="50" height="50" src="https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png">
-                <div class="name">Google Account</div>
-                <div class="actions"><p><i class="fa-solid fa-caret-down fa-fw"></i> Actions</p> 
-                    <a href="" class="action-item"><i class="fa fa-trash fa-fw"> </i> Delete</a>
-                    <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>
-                    <a href="" class="action-item"><i class="fa fa-refresh fa-fw"> </i> Update</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img width="50" height="50" src="https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png">
-                <div class="name">Google Account</div>
-                <div class="actions"><p><i class="fa-solid fa-caret-down fa-fw"></i> Actions</p> 
-                    <a href="" class="action-item"><i class="fa fa-trash fa-fw"> </i> Delete</a>
-                    <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>
-                    <a href="" class="action-item"><i class="fa fa-refresh fa-fw"> </i> Update</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img width="50" height="50" src="https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png">
-                <div class="name">Google Account</div>
-                <div class="actions"><p><i class="fa-solid fa-caret-down fa-fw"></i> Actions</p> 
-                    <a href="" class="action-item"><i class="fa fa-trash fa-fw"> </i> Delete</a>
-                    <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>
-                    <a href="" class="action-item"><i class="fa fa-refresh fa-fw"> </i> Update</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img width="50" height="50" src="https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png">
-                <div class="name">Google Account</div>
-                <div class="actions"><p><i class="fa-solid fa-caret-down fa-fw"></i> Actions</p> 
-                    <a href="" class="action-item"><i class="fa fa-trash fa-fw"> </i> Delete</a>
-                    <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>
-                    <a href="" class="action-item"><i class="fa fa-refresh fa-fw"> </i> Update</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img width="50" height="50" src="https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png">
-                <div class="name">Google Account</div>
-                <div class="actions"><p><i class="fa-solid fa-caret-down fa-fw"></i> Actions</p> 
-                    <a href="" class="action-item"><i class="fa fa-trash fa-fw"> </i> Delete</a>
-                    <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>
-                    <a href="" class="action-item"><i class="fa fa-refresh fa-fw"> </i> Update</a>
-                </div>
-            </div>
-            
+            {% endfor %}
+             
         </div>
 
         <footer>

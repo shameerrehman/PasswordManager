@@ -10,7 +10,7 @@ class Password(models.Model):
     favicon = models.CharField(max_length=300)
 
     def __str__(self):
-        return self.name
+        return self.title
 
     class Meta:
         ordering = ["-id"]
