@@ -23,7 +23,29 @@ const copies = document.querySelectorAll(".copy");
 copies.forEach(copy =>{
     copy.onclick = () =>{
         let elementToCopy = copy.previousElementSibling;
-        elementToCopy.select();
-        document.execCommand("copy")
+        if (elementToCopy.className  !== "creds"){
+            elementToCopy = elementToCopy.previousElementSibling;
+            elementToCopy.select();
+            document.execCommand("copy")
+        }
+        else{
+            elementToCopy.select();
+            document.execCommand("copy")
+
+        }
     }
 })
+
+function viewPass(id) {
+    var pass = document.getElementById(id);
+    const icon = document.getElementById('icon'+id);
+    if (pass.type === "password") {
+        pass.type = "text";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    } else {
+        pass.type = "password";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");    
+    }
+  }

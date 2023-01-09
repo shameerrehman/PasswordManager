@@ -24,7 +24,7 @@
                     <li class="nav-list"><a href="javascript:;" onclick="document.getElementById('logout-btn').click();">Logout</a></li>
                     <form hidden="true" role="form" action='.' method="POST">
                         {% csrf_token %}
-                        <input type="submit" id="logout-btn" name="logout">
+                        <input class="input" type="submit" id="logout-btn" name="logout">
                     </form>
 
                     <li class="nav-list"><a href="javascript:;" onclick="displayModal('password-modal');">View</a></li>
@@ -57,9 +57,9 @@
                 {% csrf_token %}
                 <h2>Please confirm your login</h2>
                 <p>Check your email for the 6-digit code to enter below.</p>
-                <input type='text' name='code' placeholder='XXXXXX'>
-                <input type='text' hidden='true' name='user' value='{{user.username}}'>
-                <input type="submit" value="Confirm Your Login" name="confirm">
+                <input class="input" type='text' name='code' placeholder='XXXXXX'>
+                <input class="input" type='text' hidden='true' name='user' value='{{user.username}}'>
+                <input class="input" type="submit" value="Confirm Your Login" name="confirm">
             </form>
         </div>
         {% endif%}
@@ -72,9 +72,9 @@
                 <form action="." role="form" method="POST">
                     {% csrf_token %}
                     <h2>Login</h2>
-                    <input type="text" name="username" placeholder="username">
-                    <input type="password" name="password" placeholder="password">
-                    <input type="submit" value="Login" name="login">
+                    <input class="input" type="text" name="username" placeholder="username">
+                    <input class="input" type="password" name="password" placeholder="password">
+                    <input class="input" type="submit" value="Login" name="login">
                 </form>
             </div>
 
@@ -83,11 +83,11 @@
                 <form action="." role="form" method="POST">
                     {% csrf_token %}
                     <h2>Sign Up</h2>
-                    <input type="text" name="username" placeholder="username">
-                    <input type="email" name="email" placeholder="emial@address.com">
-                    <input type="password" name="password" placeholder="password">
-                    <input type="password" name="password2" placeholder="confirm password">
-                    <input type="submit" value="Register" name="signup-form">
+                    <input class="input" type="text" name="username" placeholder="username">
+                    <input class="input" type="email" name="email" placeholder="emial@address.com">
+                    <input class="input" type="password" name="password" placeholder="password">
+                    <input class="input" type="password" name="password2" placeholder="confirm password">
+                    <input class="input" type="submit" value="Register" name="signup-form">
                 </form>
             </div>
 
@@ -95,8 +95,8 @@
             <div class="modal" id="password-modal">
                 <h2>URL/Name</h2>
                 <img width="80" height="80" src="https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png">
-                <input type="email" name="email" placeholder="emial@address.com"> <i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i>
-                <input type="password" name="password" value="password"><i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i>               
+                <input class="input" type="email" name="email" placeholder="emial@address.com"> <i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i>
+                <input class="input" type="password" name="password" value="password"><i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i>               
 
             </div>
 
@@ -105,10 +105,10 @@
                 <form action="." role="form" method="POST">
                     {% csrf_token %}
                     <h2>Add New Password</h2>
-                    <input type="text" name="url" placeholder="https://google.com">
-                    <input type="email" name="email" placeholder="emial@address.com">
-                    <input type="password" name="password" value="password">   
-                    <input type="submit" value="Save" name='add-new-pass'>
+                    <input class="input" type="text" name="url" placeholder="https://google.com">
+                    <input class="input" type="email" name="email" placeholder="emial@address.com">
+                    <input class="input" type="password" name="password" value="password">   
+                    <input class="input" type="submit" value="Save" name='add-new-pass'>
                 </form>    
             </div>
         </div>
@@ -116,10 +116,15 @@
         <div class="container">
             {% for password in all_passwords %}
                 <div class="card">
-                    <img width="50" height="50" src="{{password.favicon}}">
-                    <div class="name">{{password.title}}</div>
-                    <input type="email" name="email" value="{{password.email}}"> <i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i>
-                <input type="password" name="password" value="{{password.password}}"><i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i>
+                    <div class="name"><h2>{{password.title}}</h2></div>
+                    <img width="50" height="50" style="margin-top:10px;"src="{{password.favicon}}">
+                    <div class="display-card-info"><input class="creds" type="email" name="email" value="{{password.email}}"> <i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i></div>
+                    <div class="display-card-info"><input class="creds" style="margin-left:20px;"id="secret-id" type="password" name="password" value="{{password.password}}"><i class="fa-solid fa-fw fa-eye-slash" style="margin-right:5px;" id='see-pass' title="View Password" onclick="viewPass(this.previousElementSibling.id)"></i><i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i></div>
+                    <script> 
+                        var id = Date.now().toString(36) + Math.random().toString(36).substr(2);;
+                        document.getElementById("secret-id").id = id;
+                        document.getElementById("see-pass").id = 'icon'+id;
+                    </script>
                     <div class="actions"><p><i class="fa-solid fa-caret-down fa-fw"></i> Actions</p> 
                         <a href="" class="action-item"><i class="fa fa-trash fa-fw"> </i> Delete</a>
                         <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>

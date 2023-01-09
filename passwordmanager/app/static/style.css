@@ -31,7 +31,7 @@ a:hover{
     color: white;
 }
 
-input{
+.input{
     width: 70%;
     margin: 10px auto;
     padding: 10px;
@@ -141,8 +141,19 @@ header nav ul li{
     align-items: center;
     text-align: center;
 }
-.copy{
+.copy:hover{
     cursor: pointer;
+    color: gray;
+
+}
+
+.fa-eye:hover{
+    cursor: pointer;
+    color: gray;
+}
+.fa-eye-slash:hover{
+    cursor: pointer;
+    color: gray;
 }
 #add-password-modal{
     display: none;
@@ -167,8 +178,29 @@ header nav ul li{
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     padding: 20px;
     border-radius: 20px;
+}
+.creds{
+    margin-right: 10px;
+    width: 70%;
+    padding: 10px;
+    border: #FFFFFF;
+    border-radius: 15px;
+    background-color: var(--light-grey);
+}
+.display-card-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    align-items:center;
+    margin-top: 20px;
+    padding: 5px;
+    border: #FFFFFF;
+    border-radius: 15px;
+    background-color: var(--light-grey);
 }
 .actions{
     margin: 5px;
@@ -194,13 +226,18 @@ header nav ul li{
     display: flex;
 }
 
+@media screen and (max-width: 880px) {
+    .container{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
 @media screen and (max-width: 680px) {
     .container{
         grid-template-columns: 1fr 1fr;
     }
 }
 
-@media screen and (max-width: 420) {
+@media screen and (max-width: 420px) {
     .container{
         grid-template-columns: 1fr;
     }
