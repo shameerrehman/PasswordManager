@@ -107,7 +107,7 @@
                     <h2>Add New Password</h2>
                     <input class="input" type="text" name="url" placeholder="https://google.com">
                     <input class="input" type="email" name="email" placeholder="emial@address.com">
-                    <input class="input" type="password" name="password" value="password">   
+                    <input class="input" type="password" name="password" placeholder="password">   
                     <input class="input" type="submit" value="Save" name='add-new-pass'>
                 </form>    
             </div>
@@ -120,15 +120,22 @@
                     <img width="50" height="50" style="margin-top:10px;"src="{{password.favicon}}">
                     <div class="display-card-info"><input class="creds" type="email" name="email" value="{{password.email}}"> <i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i></div>
                     <div class="display-card-info"><input class="creds" style="margin-left:20px;"id="secret-id" type="password" name="password" value="{{password.password}}"><i class="fa-solid fa-fw fa-eye-slash" style="margin-right:5px;" id='see-pass' title="View Password" onclick="viewPass(this.previousElementSibling.id)"></i><i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i></div>
+                    <!--delete-->
+                    <form action="." hidden="true" role="form" method="POST">
+                        {% csrf_token %}
+                        <input type="text" hidden="true" name="password-id" value={{password.id}}>
+                        <input class="input" type="submit" id="delete-btn{{password.id}}" name="delete-pressed">
+                    </form>
                     <script> 
                         var id = Date.now().toString(36) + Math.random().toString(36).substr(2);;
                         document.getElementById("secret-id").id = id;
                         document.getElementById("see-pass").id = 'icon'+id;
                     </script>
                     <div class="actions"><p><i class="fa-solid fa-caret-down fa-fw"></i> Actions</p> 
-                        <a href="" class="action-item"><i class="fa fa-trash fa-fw"> </i> Delete</a>
+                        <a class="action-item" href="javascript:;" onclick="document.getElementById('delete-btn{{password.id}}').click();"><i class="fa fa-trash fa-fw"> </i> Delete</a>
                         <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>
                         <a href="" class="action-item"><i class="fa fa-refresh fa-fw"> </i> Update</a>
+                        
                     </div>
                 </div>
             {% endfor %}

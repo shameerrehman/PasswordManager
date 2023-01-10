@@ -115,6 +115,12 @@ def index(req):
             notif = f"{site_title} successfully added!"
             messages.success(req, notif)
             return HttpResponseRedirect(req.path)
+        elif "delete-pressed" in req.POST:
+            delete_card = req.POST.get("password-id")
+            notif = f"{Password.objects.get(id=delete_card).title} successfully deleted!"
+            Password.objects.get(id=delete_card).delete()
+            messages.success(req, notif)
+            return HttpResponseRedirect(req.path)
     context={}
     if req.user.is_authenticated:
         all_passwords = Password.objects.all().filter(user = req.user)
