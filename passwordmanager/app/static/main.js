@@ -25,6 +25,7 @@ copies.forEach(copy =>{
         let elementToCopy = copy.previousElementSibling;
         if (elementToCopy.className  !== "creds"){
             elementToCopy = elementToCopy.previousElementSibling;
+            elementToCopy.type = "text";
             elementToCopy.select();
             document.execCommand("copy")
         }
@@ -37,8 +38,8 @@ copies.forEach(copy =>{
 })
 
 function viewPass(id) {
-    var pass = document.getElementById(id);
-    const icon = document.getElementById('icon'+id);
+    var pass = document.getElementById("secret-id"+id);
+    const icon = document.getElementById('see-pass'+id);
     if (pass.type === "password") {
         pass.type = "text";
         icon.classList.remove("fa-eye-slash");

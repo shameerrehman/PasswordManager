@@ -105,9 +105,9 @@
                 <form action="." role="form" method="POST">
                     {% csrf_token %}
                     <h2>Add New Password</h2>
-                    <input class="input" type="text" name="url" placeholder="https://google.com">
-                    <input class="input" type="email" name="email" placeholder="emial@address.com">
-                    <input class="input" type="password" name="password" placeholder="password">   
+                    <input required class="input" type="text" name="url" pattern="https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)" title="e.g. https://example.com please include https" placeholder="https://google.com">
+                    <input required class="input" type="email" name="email" placeholder="emial@address.com">
+                    <input required class="input" type="password" name="password" placeholder="password">   
                     <input class="input" type="submit" value="Save" name='add-new-pass'>
                 </form>    
             </div>
@@ -116,21 +116,16 @@
         <div class="container">
             {% for password in all_passwords %}
                 <div class="card">
-                    <div class="name"><h2>{{password.title}}</h2></div>
+                    <div class="name"><a href={{password.url}}><h2>{{password.title}}</h2></a></div>
                     <img width="50" height="50" style="margin-top:10px;"src="{{password.favicon}}">
                     <div class="display-card-info"><input class="creds" type="email" name="email" value="{{password.email}}"> <i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i></div>
-                    <div class="display-card-info"><input class="creds" style="margin-left:20px;"id="secret-id" type="password" name="password" value="{{password.password}}"><i class="fa-solid fa-fw fa-eye-slash" style="margin-right:5px;" id='see-pass' title="View Password" onclick="viewPass(this.previousElementSibling.id)"></i><i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i></div>
+                    <div class="display-card-info"><input class="creds" style="margin-left:20px;"id="secret-id{{password.id}}" type="password" name="password" value="{{password.password}}"><i class="fa-solid fa-fw fa-eye-slash" style="margin-right:5px;" id="see-pass{{password.id}}" title="View Password" onclick="viewPass({{password.id}})"></i><i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i></div>
                     <!--delete-->
                     <form action="." hidden="true" role="form" method="POST">
                         {% csrf_token %}
                         <input type="text" hidden="true" name="password-id" value={{password.id}}>
                         <input class="input" type="submit" id="delete-btn{{password.id}}" name="delete-pressed">
                     </form>
-                    <script> 
-                        var id = Date.now().toString(36) + Math.random().toString(36).substr(2);;
-                        document.getElementById("secret-id").id = id;
-                        document.getElementById("see-pass").id = 'icon'+id;
-                    </script>
                     <div class="actions"><p><i class="fa-solid fa-caret-down fa-fw"></i> Actions</p> 
                         <a class="action-item" href="javascript:;" onclick="document.getElementById('delete-btn{{password.id}}').click();"><i class="fa fa-trash fa-fw"> </i> Delete</a>
                         <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>
@@ -143,7 +138,7 @@
         </div>
 
         <footer>
-            <a href="">Link to project code</a>
+            <a href="https://github.com/shameerrehman/PasswordManager/">Link to project code</a>
         </footer>
     </body>
 </html>

@@ -7,6 +7,7 @@ class Password(models.Model):
     email = models.CharField(max_length=200)
     password = models.CharField(max_length=200)
     title = models.CharField(max_length=100)
+    url = models.CharField(max_length=500)
     favicon = models.CharField(max_length=300)
 
     def __str__(self):

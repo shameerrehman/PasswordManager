@@ -96,24 +96,32 @@ def index(req):
             url = req.POST.get('url')
             email = req.POST.get('email')
             password = req.POST.get('password')
-            #encrypt user secrets
-            encrypted_email = fernet.encrypt(email.encode())
-            encrypted_password = fernet.encrypt(password.encode())
-            #get url details
-            browser.open(url)
-            site_title = browser.title()
-            #get favicon
-            site_favicon = favicon.get(url)[0].url
-            #save to DB
-            new_password_entry = Password.objects.create(
-                user = req.user,
-                email = encrypted_email.decode(),
-                password = encrypted_password.decode(),
-                title = site_title,
-                favicon = site_favicon
-            )
-            notif = f"{site_title} successfully added!"
-            messages.success(req, notif)
+            try:
+                #encrypt user secrets
+                encrypted_email = fernet.encrypt(email.encode())
+                encrypted_password = fernet.encrypt(password.encode())
+                #get url details
+                browser.open(url)
+                site_title = browser.title()
+                #get favicon
+                try:
+                    site_favicon = favicon.get(url)[0].url
+                except:
+                    site_favicon = "https://cdn2.iconfinder.com/data/icons/pittogrammi/142/95-512.png"
+                #save to DB
+                new_password_entry = Password.objects.create(
+                    user = req.user,
+                    email = encrypted_email.decode(),
+                    password = encrypted_password.decode(),
+                    url = url,
+                    title = site_title,
+                    favicon = site_favicon
+                )
+                notif = f"{site_title} successfully added!"
+                messages.success(req, notif)
+            except:
+                notif = f"Sorry, {url} is not compatible"
+                messages.error(req, notif)
             return HttpResponseRedirect(req.path)
         elif "delete-pressed" in req.POST:
             delete_card = req.POST.get("password-id")
