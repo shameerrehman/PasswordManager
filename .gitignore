@@ -1,1 +1,2 @@
 passwordmanager/passwordmanager/settings.py
+passwordmanager/db.sqlite3
