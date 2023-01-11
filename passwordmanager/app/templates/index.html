@@ -7,6 +7,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE-edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Password Manager</title>
+        <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/1828/1828471.png">
         <link rel="stylesheet" href="{%static 'style.css' %}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <script src="{%static 'main.js' %}" defer></script>
@@ -21,14 +22,13 @@
                     <li class="nav-list"><a href="javascript:;" onclick="displayModal('login-modal');">Login</a></li>
                     <li class="nav-list"><a href="javascript:;" onclick="displayModal('signup-modal');">Sign Up</a></li>
                     {% else %}
+                    <li class="nav-list"><a href="javascript:;" onclick="displayModal('add-password-modal');">Add New</a></li>
                     <li class="nav-list"><a href="javascript:;" onclick="document.getElementById('logout-btn').click();">Logout</a></li>
                     <form hidden="true" role="form" action='.' method="POST">
                         {% csrf_token %}
                         <input class="input" type="submit" id="logout-btn" name="logout">
                     </form>
 
-                    <li class="nav-list"><a href="javascript:;" onclick="displayModal('password-modal');">View</a></li>
-                    <li class="nav-list"><a href="javascript:;" onclick="displayModal('add-password-modal');">Add New</a></li>
                     {% endif %}
                 </ul>
                 
@@ -57,7 +57,7 @@
                 {% csrf_token %}
                 <h2>Please confirm your login</h2>
                 <p>Check your email for the 6-digit code to enter below.</p>
-                <input class="input" type='text' name='code' placeholder='XXXXXX'>
+                <input required class="input" type='text' name='code' placeholder='XXXXXX'>
                 <input class="input" type='text' hidden='true' name='user' value='{{user.username}}'>
                 <input class="input" type="submit" value="Confirm Your Login" name="confirm">
             </form>
@@ -72,9 +72,10 @@
                 <form action="." role="form" method="POST">
                     {% csrf_token %}
                     <h2>Login</h2>
-                    <input class="input" type="text" name="username" placeholder="username">
-                    <input class="input" type="password" name="password" placeholder="password">
+                    <input required class="input" type="text" name="username" placeholder="username">
+                    <input required class="input" type="password" name="password" placeholder="password">
                     <input class="input" type="submit" value="Login" name="login">
+                    <p>Don't already have an account? <a href="javascript:;" style="font-weight:bold"onclick="displayModal('signup-modal');">Register now!</a></p>
                 </form>
             </div>
 
@@ -83,21 +84,12 @@
                 <form action="." role="form" method="POST">
                     {% csrf_token %}
                     <h2>Sign Up</h2>
-                    <input class="input" type="text" name="username" placeholder="username">
-                    <input class="input" type="email" name="email" placeholder="emial@address.com">
-                    <input class="input" type="password" name="password" placeholder="password">
-                    <input class="input" type="password" name="password2" placeholder="confirm password">
+                    <input required class="input" type="text" name="username" placeholder="username">
+                    <input required class="input" type="email" name="email" placeholder="emial@address.com">
+                    <input required class="input" type="password" name="password" placeholder="password">
+                    <input required class="input" type="password" name="password2" placeholder="confirm password">
                     <input class="input" type="submit" value="Register" name="signup-form">
                 </form>
-            </div>
-
-            <!--password display modal-->
-            <div class="modal" id="password-modal">
-                <h2>URL/Name</h2>
-                <img width="80" height="80" src="https://cdn.pixabay.com/photo/2016/04/13/14/27/google-chrome-1326908__340.png">
-                <input class="input" type="email" name="email" placeholder="emial@address.com"> <i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i>
-                <input class="input" type="password" name="password" value="password"><i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i>               
-
             </div>
 
             <!--add new password modal-->
@@ -116,20 +108,27 @@
         <div class="container">
             {% for password in all_passwords %}
                 <div class="card">
-                    <div class="name"><a href={{password.url}}><h2>{{password.title}}</h2></a></div>
+                    <div class="title"><div class="name"><a href={{password.url}}><h2>{{password.title}}</h2></a></div></div>
                     <img width="50" height="50" style="margin-top:10px;"src="{{password.favicon}}">
-                    <div class="display-card-info"><input class="creds" type="email" name="email" value="{{password.email}}"> <i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i></div>
-                    <div class="display-card-info"><input class="creds" style="margin-left:20px;"id="secret-id{{password.id}}" type="password" name="password" value="{{password.password}}"><i class="fa-solid fa-fw fa-eye-slash" style="margin-right:5px;" id="see-pass{{password.id}}" title="View Password" onclick="viewPass({{password.id}})"></i><i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i></div>
+                    <div class="display-card-info"><input class="creds" type="email" name="email" value="{{password.email}}" onchange="update(this, {{password.id}});"> <i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i></div>
+                    <div class="display-card-info"><input class="creds" style="margin-left:20px;"id="secret-id{{password.id}}" onchange="update(this, {{password.id}});" type="password" name="password" value="{{password.password}}"><i class="fa-solid fa-fw fa-eye-slash" style="margin-right:5px;" id="see-pass{{password.id}}" title="View Password" onclick="viewPass({{password.id}})"></i><i class="fas fa-copy fa-fw copy" title="copy to clipboard"></i></div>
                     <!--delete-->
                     <form action="." hidden="true" role="form" method="POST">
                         {% csrf_token %}
                         <input type="text" hidden="true" name="password-id" value={{password.id}}>
                         <input class="input" type="submit" id="delete-btn{{password.id}}" name="delete-pressed">
                     </form>
+                    <!--update-->
+                    <form action="." hidden="true" role="form" method="POST">
+                        {% csrf_token %}
+                        <input type="text" hidden="true" name="password-id" value={{password.id}}>
+                        <input hidden="true" id="user{{password.id}}" type="text" name="new-username" value={{password.email}}>
+                        <input hidden="true" id="pass{{password.id}}"type="password" name="new-password" value={{password.password}}>
+                        <input class="input" type="submit" id="update-btn{{password.id}}" name="update-pressed">
+                    </form>
                     <div class="actions"><p><i class="fa-solid fa-caret-down fa-fw"></i> Actions</p> 
                         <a class="action-item" href="javascript:;" onclick="document.getElementById('delete-btn{{password.id}}').click();"><i class="fa fa-trash fa-fw"> </i> Delete</a>
-                        <a href="" class="action-item"><i class="fa fa-eye fa-fw"> </i>View</a>
-                        <a href="" class="action-item"><i class="fa fa-refresh fa-fw"> </i> Update</a>
+                        <a class="action-item" href="javascript:;" onclick="document.getElementById('update-btn{{password.id}}').click();"><i class="fa fa-refresh fa-fw"> </i> Update</a>
                         
                     </div>
                 </div>

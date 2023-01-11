@@ -129,6 +129,19 @@ def index(req):
             Password.objects.get(id=delete_card).delete()
             messages.success(req, notif)
             return HttpResponseRedirect(req.path)
+        elif "update-pressed" in req.POST:
+            update_card = req.POST.get("password-id")
+            newUsername = req.POST.get("new-username")
+            newPass = req.POST.get("new-password")
+            encrypted_new_email = fernet.encrypt(newUsername.encode())
+            encrypted_new_password = fernet.encrypt(newPass.encode())
+            obj = Password.objects.get(id=update_card)
+            obj.email = encrypted_new_email.decode()
+            obj.password = encrypted_new_password.decode()
+            obj.save()
+            notif = f"{obj.title} successfully updated!"
+            messages.success(req, notif)
+            return HttpResponseRedirect(req.path)
     context={}
     if req.user.is_authenticated:
         all_passwords = Password.objects.all().filter(user = req.user)
